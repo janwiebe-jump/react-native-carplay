@@ -1,4 +1,5 @@
 import { ImageSourcePropType, Platform } from 'react-native';
+import { TabUpdate } from 'src/interfaces/TabUpdate';
 import { CarPlay } from '../CarPlay';
 import { BarButton } from '../interfaces/BarButton';
 
@@ -141,6 +142,11 @@ export class Template<P> {
   updateTemplate = (config: P) => {
     console.log('LETSGO!', config, this.type);
     CarPlay.bridge.updateTemplate(this.id, this.parseConfig({ type: this.type, ...config }));
+  };
+
+  updateTemplateTabInfo = (config: TabUpdate) => {
+    console.log('Performing tab update', config);
+    CarPlay.bridge.updateTemplateTabInfo(this.id, this.parseConfig(config));
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

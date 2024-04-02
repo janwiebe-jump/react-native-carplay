@@ -627,6 +627,33 @@ RCT_EXPORT_METHOD(updateTabBarTemplates:(NSString *)templateId templates:(NSDict
     }
 }
 
+RCT_EXPORT_METHOD(updateTemplateTabInfo:(NSString *)templateId templates:(NSDictionary*)config) {
+    RNCPStore *store = [RNCPStore sharedManager];
+    CPTemplate *template = [store findTemplateById:templateId];
+    if (template) {
+        
+        if (config[@"tabSystemItem"]) {
+            NSLog(@"Updating tabSystemImage");
+            template.tabSystemItem = [RCTConvert NSInteger:config[@"tabSystemItem"]];
+        }
+        if (config[@"tabSystemImageName"]) {
+            NSLog(@"Updating tabSystemImage");
+            template.tabSystemImage = [UIImage systemImageNamed:[RCTConvert NSString:config[@"tabSystemImageName"]]];
+        }
+        if (config[@"tabImage"]) {
+            NSLog(@"Updating tabImage");
+            template.tabImage = [RCTConvert UIImage:config[@"tabImage"]];
+        }
+        if (config[@"tabTitle"]) {
+            NSLog(@"Updating tabTitle");
+            template.tabTitle = [RCTConvert NSString:config[@"tabTitle"]];
+        }
+
+    } else {
+        NSLog(@"Failed to find template %@", template);
+    }
+}
+
 
 RCT_EXPORT_METHOD(updateListTemplateSections:(NSString *)templateId sections:(NSArray*)sections) {
     RNCPStore *store = [RNCPStore sharedManager];

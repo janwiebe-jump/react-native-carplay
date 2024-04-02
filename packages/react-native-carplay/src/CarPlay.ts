@@ -84,6 +84,7 @@ export interface InternalCarPlay extends NativeModule {
   getMaximumNumberOfGridImages(id: string): Promise<number>;
   getMaximumListImageRowItemImageSize(id: string): Promise<ImageSize>;
   reactToSelectedResult(status: boolean): void;
+  updateTemplateTabInfo(id: string, config: unknown): void;
   updateListTemplateSections(id: string, config: unknown): void;
   updateListTemplateItem(id: string, config: unknown): void;
   reactToUpdatedSearchText(id: string, items: unknown): void;
@@ -131,7 +132,7 @@ export type WindowInformation = {
 export type ImageSize = {
   width: number;
   height: number;
-}
+};
 
 export type OnConnectCallback = (window: WindowInformation) => void;
 export type OnDisconnectCallback = () => void;
