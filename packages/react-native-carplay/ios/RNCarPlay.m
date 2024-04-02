@@ -978,9 +978,6 @@ RCT_EXPORT_METHOD(updateMapTemplateMapButtons:(NSString*) templateId mapButtons:
     for (NSDictionary *tpl in tpls) {
         CPTemplate *templ = [store findTemplateById:tpl[@"id"]];
 
-        // Update the template id, since it might have been change.
-        [templ setUserInfo:@{ @"templateId": tpl[@"id"] }];
-
         // Update tab settings
         if (tpl[@"tabSystemItem"]) {
             templ.tabSystemItem = [RCTConvert NSInteger:tpl[@"tabSystemItem"]];
