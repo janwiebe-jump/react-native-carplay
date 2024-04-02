@@ -638,7 +638,7 @@ RCT_EXPORT_METHOD(updateTemplateTabInfo:(NSString *)templateId templates:(NSDict
         }
         if (config[@"tabSystemImageName"]) {
             NSLog(@"Updating tabSystemImage");
-            template.tabSystemImage = [UIImage systemImageNamed:[RCTConvert NSString:config[@"tabSystemImageName"]]];
+            template.tabImage = [UIImage systemImageNamed:[RCTConvert NSString:config[@"tabSystemImageName"]]];
         }
         if (config[@"tabImage"]) {
             NSLog(@"Updating tabImage");
