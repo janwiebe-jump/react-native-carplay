@@ -11,6 +11,10 @@ export type NowPlayingButton = {
       type: 'image';
       image: ImageSourcePropType;
     }
+  | {
+      type: 'systemImg';
+      systemImgName: string;
+    }
 );
 
 export interface NowPlayingTemplateConfig extends TemplateConfig {

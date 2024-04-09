@@ -281,7 +281,8 @@ RCT_EXPORT_METHOD(createTemplate:(NSString *)templateId config:(NSDictionary*)co
             @"more": CPNowPlayingMoreButton.class,
             @"playback": CPNowPlayingPlaybackRateButton.class,
             @"repeat": CPNowPlayingRepeatButton.class,
-            @"image": CPNowPlayingImageButton.class
+            @"image": CPNowPlayingImageButton.class,
+            @"systemImg": CPNowPlayingImageButton.class
         };
         
         for (NSDictionary *_button in _buttons) {
@@ -293,6 +294,13 @@ RCT_EXPORT_METHOD(createTemplate:(NSString *)templateId config:(NSDictionary*)co
                 
                 if ([buttonType isEqualToString:@"image"]) {
                     UIImage *_image = [RCTConvert UIImage:[_button objectForKey:@"image"]];
+                    button = [[CPNowPlayingImageButton alloc] initWithImage:_image handler:^(__kindof CPNowPlayingImageButton * _Nonnull) {
+                        if (self->hasListeners) {
+                            [self sendEventWithName:@"buttonPressed" body:body];
+                        }
+                    }];
+                } else if ([buttonType isEqualToString:@"systemImg"]) {
+                    UIImage *_image = [UIImage systemImageNamed:[RCTConvert NSString:_button[@"systemImgName"]]];
                     button = [[CPNowPlayingImageButton alloc] initWithImage:_image handler:^(__kindof CPNowPlayingImageButton * _Nonnull) {
                         if (self->hasListeners) {
                             [self sendEventWithName:@"buttonPressed" body:body];
